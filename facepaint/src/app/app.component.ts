@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'facepaint';
-}
+  title = 'Facepaint';
+  readonly ROOT_URL = 'http://localhost:8080';
+
+  users: any;
+  
+  constructor(private http: HttpClient){}
+
+  getUsers(){
+
+    this.users = this.http.get(this.ROOT_URL + '/users');
+
+  }
+
+    
+
+   
+    }
+
+
+

@@ -1,2 +1,6 @@
-<h1>Hello</h1>
-<router-outlet></router-outlet>
+<button (click)="getUsers()"> Get Users</button>
+
+<div *ngFor="let user of users | async">
+    {{user | json}}
+
+</div>
