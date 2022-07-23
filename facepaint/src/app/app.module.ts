@@ -10,7 +10,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ArtComponent } from './components/art/art.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { SignupComponent } from './components/signup/signup.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { SignupComponent } from './components/signup/signup.component';
     ArtComponent,
     SearchComponent,
     ProfileComponent,
-    SignupComponent,
+ 
   ],
   imports: [
     BrowserModule,
