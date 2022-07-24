@@ -10,6 +10,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ArtComponent } from './components/art/art.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { GetUserComponent } from './get-user/get-user.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     ArtComponent,
     SearchComponent,
     ProfileComponent,
+    GetUserComponent,
  
   ],
   imports: [
