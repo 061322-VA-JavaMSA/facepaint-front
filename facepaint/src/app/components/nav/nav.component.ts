@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import {User} from "../../models/user";
+import {Role} from "../../models/role.enum";
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
+  @Input() loggedInUser!: User; //will be to hold logged in user
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  logout(){
+    console.log('logging out');
+    //add logic to logout user
+  }
 }
