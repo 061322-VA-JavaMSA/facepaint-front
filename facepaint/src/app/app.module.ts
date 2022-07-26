@@ -11,6 +11,7 @@ import { ArtComponent } from './components/art/art.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { SignupComponent } from './components/signup/signup.component';
     SearchComponent,
     ProfileComponent,
     SignupComponent,
+    DeleteUserComponent,
  
   ],
   imports: [

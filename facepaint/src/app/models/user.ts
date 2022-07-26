@@ -14,4 +14,5 @@ export class User {
         this.role = role;
         this.imageId = imageId;
     }
+
 }

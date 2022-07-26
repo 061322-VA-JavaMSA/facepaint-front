@@ -1,8 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {User} from "../../models/user";
-import {Role} from "../../models/role.enum";
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -11,16 +7,9 @@ import {Router} from "@angular/router";
 })
 export class NavComponent implements OnInit {
 
-  @Input() loggedInUser!: User; //will be to hold logged in user
-
-  constructor(private authServ: AuthService, private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  logout(){
-    console.log('logging out');
-    this.authServ.logout();
-    this.router.navigate(['']) //sends user back to homepage with login
-  }
 }
