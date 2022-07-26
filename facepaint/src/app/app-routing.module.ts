@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {ArtComponent} from "./components/art/art.component";
-import {GetUserComponent} from "./get-user/get-user.component";
+import {SignupComponent} from "./components/signup/signup.component";
+
 
 const routes: Routes = [{
   path: '',
@@ -17,7 +18,7 @@ const routes: Routes = [{
   component: ArtComponent
 }, {
   path: 'users',
-  component: GetUserComponent
+  component: SignupComponent
 }];
 
 @NgModule({
