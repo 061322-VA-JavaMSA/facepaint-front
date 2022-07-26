@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   logout(){
-    this.loggedInUser = null; //says content type cannot be null?
+    this.loggedInUser = null;
     //this.token = '';
   }
 }

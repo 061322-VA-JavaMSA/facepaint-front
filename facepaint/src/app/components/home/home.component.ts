@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   login(){
     this.authService.login(this.usernameInput, this.passwordInput).subscribe(
       () => {
-        this.router.navigate(['']);
+        this.router.navigate(['profile']); //sent to profile for now, can change later
       },
       () => {
         this.errorMessage = 'Unable to login.';
