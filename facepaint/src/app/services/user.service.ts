@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { HttpHeaders } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +26,10 @@ export class UserService {
       )
     );
   }
+  viewProfile(id: number){
+    return this.http.get(`${environment.apiUrl}/users/${id}`)
+      
+      }
 
   createUser(newUser: User): Observable<User> {
     return this.http.post(`${environment.apiUrl}/users`, newUser, {
@@ -51,4 +56,5 @@ export class UserService {
     return this.http.delete(`${environment.apiUrl}/users`, options)
    
   }
+  
 }
