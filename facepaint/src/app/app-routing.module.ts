@@ -17,9 +17,6 @@ const routes: Routes = [{
 },{
   path: 'art',
   component: ArtComponent
-}, {
-  path: 'users',
-  component: SignupComponent
 },{
   path: 'login',
   component: LoginComponent
