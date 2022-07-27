@@ -21,6 +21,6 @@ export class NavComponent implements OnInit {
   logout(){
     console.log('logging out');
     this.authServ.logout();
-    this.router.navigate(['']) //sends user back to homepage with login
+    this.router.navigate(['login']) //sends user to login page
   }
 }

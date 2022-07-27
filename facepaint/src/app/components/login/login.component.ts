@@ -1,16 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {User} from "../../models/user";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class HomeComponent implements OnInit {
-
-  @Input()loggedInUser!: User; //incase user is logged in
+export class LoginComponent implements OnInit {
 
   usernameInput!: string;
   passwordInput!: string;
@@ -27,7 +24,7 @@ export class HomeComponent implements OnInit {
   login(){
     this.authService.login(this.usernameInput, this.passwordInput).subscribe(
       () => {
-        this.router.navigate(['profile']); //sent to profile for now, can change later
+        this.router.navigate(['']); //sent to profile for now, can change later
       },
       () => {
         this.errorMessage = 'Unable to login.';

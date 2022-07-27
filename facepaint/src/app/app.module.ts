@@ -11,7 +11,9 @@ import { ArtComponent } from './components/art/art.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+
 
 
 
@@ -24,7 +26,8 @@ import { DeleteUserComponent } from './components/delete-user/delete-user.compon
     SearchComponent,
     ProfileComponent,
     SignupComponent,
-    DeleteUserComponent,
+    LoginComponent,
+    DeleteUserComponent
  
  
   ],
