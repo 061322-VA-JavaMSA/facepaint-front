@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  @Input()loggedInUser!: User; //incase user is logged in
 
   usernameInput!: string;
   passwordInput!: string;

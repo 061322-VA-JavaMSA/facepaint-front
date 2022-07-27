@@ -11,6 +11,7 @@ import { ArtComponent } from './components/art/art.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SignupComponent } from './components/signup/signup.component';
     SearchComponent,
     ProfileComponent,
     SignupComponent,
- 
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
