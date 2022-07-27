@@ -1,6 +1,7 @@
 <p>art works!</p>
 
-<button (click)="showArtInfo()"> Get Information</button>
+<button (click)="showArtInformation()"> Get Information</button>
+<pre> Individual Data image_ID: {{data.data.image_id}}</pre>
 
 <pre> Data = {{data | json}}</pre>
-<img [src]="this.sanitize(imageToShow)"/>
+<img [src]="this.showArtImage()"/>
