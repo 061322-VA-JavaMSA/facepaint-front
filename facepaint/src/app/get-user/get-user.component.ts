@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { userInt } from './userInt';
+import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
+import { User } from '../models/user';
+
 
 @Component({
   selector: 'app-get-user',
@@ -15,26 +18,23 @@ export class GetUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  readonly ROOT_URL = 'http://localhost:8080';
+
 
   users!: Observable<any>;
-  newUser!: Observable<any>;
-  
-  constructor(private http: HttpClient){}
 
-  getUsers(){
-   
-    this.users = this.http.get(this.ROOT_URL + '/users' );
+  constructor(private http: HttpClient,) { }
 
+  getUsers(): Observable<User[]> {
+    return this.http.get(`${environment.apiUrl}/users`, {
+      headers: {
+
+      }
+    }).pipe(
+      map(
+        response => response as User[]
+      )
+    );
   }
-  createUser(){
-    const data: userInt = {
-      
-      username: "bruh",
-      password: "pass"
 
-    }
-    this.newUser = this.http.post(this.ROOT_URL + '/users', data)
-  }
 
 }
