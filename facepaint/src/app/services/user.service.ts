@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
+
 import { HttpHeaders } from '@angular/common/http';
 
 
@@ -18,6 +19,8 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get(`${environment.apiUrl}/users`, {
       headers: {
+
+
 
       }
     }).pipe(
