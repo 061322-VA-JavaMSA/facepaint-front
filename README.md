@@ -8,4 +8,4 @@ TEAM MEMBERS:
 
 
 
-FACEPAINT IS A WEBSITE THAT ALLOWS A USER TO MANAGE THEIR PROFILE AND SHOWCASE THEIR FAVORITE PIECE OF ART. BASIC USERS ARE ABLE TO LOGIN AS WELL AS SEARCH AND MANAGE THEIR OWN PROFILE. SEARCHING USES THE CHICAGO ART INSTITUITE API TO SEARCH BY TITLE OR ARTIST. USERS ARE ALSO ABLE TO SHOWCASE THEIR FAVORITE PIECE OF ART ON THEIR PROFILE. ADMINISTRATORS ARE ABLE TO REMOVE USERS IN ADDITION TO HAVING THE OTHER CAPABILITIES OF A BASIC USER.
+Facepaint is a website that allows a user to manage their profile and showcase their favorite piece of art. Basic users are able to login as well as search and manage their own profiles. Searching uses the Chicago Art Institute API to search by title or artist. Administrators are able to remove users in addition to having the capabilities of a basic user.
