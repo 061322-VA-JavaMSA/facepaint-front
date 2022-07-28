@@ -1,1 +1,13 @@
-<p>profile works!</p>
+
+
+<h2>Profile</h2>
+
+<input id="user-id" [(ngModel)]="id" placeholder="user-id">
+<button type="button" class="clear"
+          (click)="getUserById(id)">Find</button>
+<div>{{user | json}}</div>
+
+<td>Welcome! {{getUser?.username}}</td>
+<br>
+<td>{{getUser?.imageId}}</td>
+<img class="image-thing" src="https://www.artic.edu/iiif/2/{{getUser?.imageId}}/full/843,/0/default.jpg"/>
