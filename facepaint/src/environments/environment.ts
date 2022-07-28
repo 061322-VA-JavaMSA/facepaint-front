@@ -5,8 +5,6 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080',
-  apifront:'https://www.artic.edu/iiif/2/',
-  apiback: '/full/843,/0/default.jpg'
 };
 
 
