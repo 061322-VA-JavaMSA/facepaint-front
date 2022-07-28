@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
+import { user } from './mock-users'
+
 
 
 @Component({
@@ -13,28 +15,43 @@ import { User } from '../models/user';
 })
 export class GetUserComponent implements OnInit {
 
-  
+  users!: Observable<any>;
+
 
   ngOnInit(): void {
+
+
   }
 
 
 
-  users!: Observable<any>;
+  constructor(private http: HttpClient) { 
 
-  constructor(private http: HttpClient,) { }
+  }
 
+
+  // getUsers(){
+  //   console.log(user);
+  //   return user;
+  // }
   getUsers(): Observable<User[]> {
+    console.log(this.users)
     return this.http.get(`${environment.apiUrl}/users`, {
       headers: {
-
+        
       }
     }).pipe(
       map(
         response => response as User[]
       )
+
     );
+        
   }
 
 
 }
+  
+
+
+
