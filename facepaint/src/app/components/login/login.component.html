@@ -1,0 +1,35 @@
+<main class="container-fluid mx-auto " style="padding: 0 7.5em;">
+  <div class="container align-content-center" id="loginForm">
+    <form style="padding-top: 2.5em;" >
+      <div id="bottomBorder" class="d-flex justify-content-center">
+        <h1 class="display-4">Login</h1>
+      </div>
+      <hr>
+      <br>
+      <div class="d-flex justify-content-center">
+        <label>Username:</label>
+      </div>
+      <div class="d-flex justify-content-center">
+        <input class="inputstyle" type="text" name="username" id="username" [(ngModel)]="usernameInput">
+      </div>
+      <br>
+      <div class="d-flex justify-content-center">
+        <label>Password:</label>
+      </div>
+      <div class="d-flex justify-content-center">
+        <input class="inputstyle" type="password" name="password" id="password" [(ngModel)]="passwordInput">
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="d-flex justify-content-center">
+        <input class="btn btn-outline-secondary" value="Login" id="submitButton" (click)="login()">
+      </div>
+      <br>
+      <br>
+      <div class="d-flex justify-content-center">
+        <div style="color:red;" id="error-div">{{errorMessage}}</div>
+      </div>
+    </form>
+  </div>
+</main>

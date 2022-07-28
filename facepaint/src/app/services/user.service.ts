@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
+
 import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +20,17 @@ export class UserService {
     return this.http.get(`${environment.apiUrl}/users`, {
       headers: {
 
+
+
       }
     }).pipe(
       map(
         response => response as User[]
       )
     );
+  }
+  getUserById(id: number): Observable<any> {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/${id}`);
   }
 
   createUser(newUser: User): Observable<User> {
@@ -51,4 +58,5 @@ export class UserService {
     return this.http.delete(`${environment.apiUrl}/users`, options)
    
   }
+  
 }
