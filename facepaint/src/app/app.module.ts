@@ -10,7 +10,11 @@ import { NavComponent } from './components/nav/nav.component';
 import { ArtComponent } from './components/art/art.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { GetUserComponent } from './get-user/get-user.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+
+
 
 
 @NgModule({
@@ -21,7 +25,10 @@ import { GetUserComponent } from './get-user/get-user.component';
     ArtComponent,
     SearchComponent,
     ProfileComponent,
-    GetUserComponent,
+    SignupComponent,
+    LoginComponent,
+    DeleteUserComponent
+ 
  
   ],
   imports: [
