@@ -9,21 +9,49 @@ import { ArtRetrievalService } from 'src/app/services/art-retrieval.service';
 
 export class ArtComponent implements OnInit {
 
-  //variables for later use
-  artInformation: any;
+  //images title to be displayed
+  imageTitle: string;
+
+  //images' artist to be displayed
+  imageArtist: string;
+  
+  //art id to search for art information
+  artIdInput: string;
+
+  //image id to retrieve the actual image
+  artImageIdInput: string;
+
+  //actual image to be displayer
   artImage: any;
+  
 
    constructor(private artServ: ArtRetrievalService){}
 
    ngOnInit(): void {
+    this.artImage = '';
   }
 
-  showArtImage(){
-    return this.artServ.getImageFromService();
+  //sets the image id
+  setArtImageIdInput(artInput:string){
+    this.artImageIdInput = artInput;
   }
+
+  //sets the art id for art information
+  setArtIdInput(artInput : string){
+    this.artIdInput = artInput;
+  }
+
 
   showArtInformation(){
-    return this.artServ.showArtInfo();
+    this.artServ.showArtInfo(this.artIdInput);
+    this.imageTitle = this.artServ.title;
+    this.imageArtist = this.artServ.artist;
+  }
+  
+  showArtImage(){
+   this.artServ.getImageFromService(this.artImageIdInput);
+   this.artImage = this.artServ.sanitize(this.artServ.imageToShow);
+
   }
 
 }

@@ -1,7 +1,15 @@
 <p>art works!</p>
 
-<button (click)="showArtInformation()"> Get Information</button>
-<pre> Individual Data image_ID: {{data.data.image_id}}</pre>
+<div>
+    <input type = "text" name = "artIdInput" [(ngModel)]="artIdInput">
+    <input type = "text" name = "artImageIdInput" [(ngModel)]="artImageIdInput">
+    <button (click) = "showArtInformation()">Get art information</button>
+    <button (click) = "showArtImage()">Get art information</button>
 
-<pre> Data = {{data | json}}</pre>
-<img [src]="this.showArtImage()"/>
+    <p>Art Information:</p>
+    {{imageTitle | json}}
+    {{imageArtist}}
+
+    <p>Test Image</p>
+    <img [src] = "artImage">
+</div>

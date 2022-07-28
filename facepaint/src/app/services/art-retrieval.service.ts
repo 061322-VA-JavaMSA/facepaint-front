@@ -9,8 +9,12 @@ import { environment } from 'src/environments/environment';
 })
 export class ArtRetrievalService {
   imageToShow: any;
-  imageData : any;
+  imageData: any;
+  title: string;
+  artist: string;
   searchResults : any;
+  imageURL: any;
+
   
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
@@ -21,9 +25,9 @@ export class ArtRetrievalService {
   }
 
   //retrieves the art image as a byte[]
-  getArtworkImage(): Observable<Blob>{
-   let queryParam = new HttpParams().set('imageId','2fa24f36-cc26-41b6-4b49-12bba2a6c1c8');
-   return this.http.get(`${environment.apiUrl}/showArt`,{params:queryParam, responseType:'blob'});
+  getArtworkImage(imageId: string): Observable<Blob>{
+   let queryParam = new HttpParams().set('imageID', imageId);
+   return this.http.get(`${environment.apiUrl}/artwork`,{params:queryParam, responseType:'blob'});
   }
 
   //converts the byte[] to a data url
@@ -40,38 +44,43 @@ export class ArtRetrievalService {
 }
 
   //sends the retrieved byte[] to be converted
-  getImageFromService() {
-    this.getArtworkImage().subscribe(data => {
+  getImageFromService(imageId: string) {
+    this.getArtworkImage(imageId).subscribe(data => {
     this.createImageFromBlob(data);
+    this.imageURL = this.sanitize(this.imageToShow);
   });
 }
 
 //retrieves the art information as an observable object
-getArtworkInfo(){
-  let queryParam = new HttpParams().set('artId', '179972');
+getArtworkInfo(artId: string){
+  let queryParam = new HttpParams().set('artId', artId);
   return this.http.get(`${environment.apiUrl}/artId`, {params:queryParam});
 }
 
 //converts the retrieved observable to a json object for manipulation
-showArtInfo(){
-    this.getArtworkInfo().subscribe(val => {
-    this.imageData = val;
+showArtInfo(artId : string){
+    this.getArtworkInfo(artId).subscribe(val => {
+      this.imageData = val;
+      this.title = this.imageData.data.title;
+      this.artist = this.imageData.data.artist_display;
     //console.log(this.imageData.data.id);
   });
 }
 
 //sends a search request to the backend
-getSearchResults(){
-  let queryParam = new HttpParams().set('query', 'picasso');
+getSearchResults(searchKeyword: string){
+  let queryParam = new HttpParams().set('query', searchKeyword);
   return this.http.get(`${environment.apiUrl}/search`, {params:queryParam});
 }
 
 //converts the retrieved observable to a json object for manipulation
-showSearchResults(){
-  this.getSearchResults().subscribe(val => {
+showSearchResults(searchKeyword: string){
+  this.getSearchResults(searchKeyword).subscribe(val => {
   this.searchResults = val;
   //console.log(this.imageData.data.id);
 });
+
+return this.searchResults;
 }
 
 }

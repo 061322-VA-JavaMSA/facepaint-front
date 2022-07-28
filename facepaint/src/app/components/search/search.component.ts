@@ -17,6 +17,6 @@ export class SearchComponent implements OnInit {
   }
 
   search(){
-    this.searchResults = this.artServ.showSearchResults();
+    //this.searchResults = this.artServ.showSearchResults();
   }
 }
