@@ -6,6 +6,8 @@ import {ArtComponent} from "./components/art/art.component";
 import {SignupComponent} from "./components/signup/signup.component";
 import {LoginComponent} from "./components/login/login.component";
 import { GetUserComponent } from './get-user/get-user.component';
+import { SearchComponent } from './components/search/search.component';
+
 
 
 const routes: Routes = [{
@@ -24,11 +26,14 @@ const routes: Routes = [{
 }, {
   path: "signup",
   component: SignupComponent
-},
-{
+
+},{
   path: "getusers",
   component: GetUserComponent
-  
+
+},{
+  path: 'search',
+  component: SearchComponent
 }];
 
 @NgModule({
