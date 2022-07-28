@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+
 
 
 @Component({
@@ -11,16 +10,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
   
-  profiles:any;
+  user: any
+  id: number;
 
-  constructor(private userServ: UserService, private http: HttpClient) { }
+  constructor(private userServ: UserService) { }
 
   ngOnInit(): void {
   }
 
-  viewProfile(){
-    this.profiles = this.http.get(`${environment.apiUrl}/users/1`)
+  getUserById(id: number): void {
+    this.userServ.getUserById(id).subscribe(
+      user => this.user = user
 
+    )
   }
 
 }

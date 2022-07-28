@@ -1,5 +1,8 @@
-<p>profile works!</p>
 
-<button  (click) = "viewProfile()">Get Profile</button>
 
-profiles
+<h2>Profile</h2>
+
+<input id="user-id" [(ngModel)]="id" placeholder="user-id">
+<button type="button" class="clear"
+          (click)="getUserById(id)">Find</button>
+<div>{{user | json}}</div>

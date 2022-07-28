@@ -26,10 +26,9 @@ export class UserService {
       )
     );
   }
-  viewProfile(id: number){
-    return this.http.get(`${environment.apiUrl}/users/${id}`)
-      
-      }
+  getUserById(id: number): Observable<any> {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/${id}`);
+  }
 
   createUser(newUser: User): Observable<User> {
     return this.http.post(`${environment.apiUrl}/users`, newUser, {
