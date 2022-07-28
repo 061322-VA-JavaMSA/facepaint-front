@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 
 
@@ -14,7 +15,7 @@ import { User } from '../models/user';
 })
 export class GetUserComponent implements OnInit {
 
-  users!: Observable<any>;
+  users!: any;
 
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class GetUserComponent implements OnInit {
 
 
 
-  constructor(private http: HttpClient) { 
+  constructor(private us: UserService) { 
 
   }
 
@@ -33,19 +34,10 @@ export class GetUserComponent implements OnInit {
   //   console.log(user);
   //   return user;
   // }
-  getUsers(): Observable<User[]> {
-    console.log(this.users)
-    return this.http.get(`${environment.apiUrl}/users`, {
-      headers: {
-        
-      }
-    }).pipe(
-      map(
-        response => response as User[]
-      )
-
-    );
-        
+  getUsers(): Observable<User[]>{
+    this.users = this.us.getUsers();
+    console.log(this.users);
+    return this.users;
   }
 
 

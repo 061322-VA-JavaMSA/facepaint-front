@@ -13,6 +13,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+import { GetUserComponent } from './get-user/get-user.component';
 
 
 
@@ -25,6 +26,7 @@ import { DeleteUserComponent } from './components/delete-user/delete-user.compon
     ArtComponent,
     SearchComponent,
     ProfileComponent,
+    GetUserComponent,
     SignupComponent,
     LoginComponent,
     DeleteUserComponent

@@ -5,6 +5,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {ArtComponent} from "./components/art/art.component";
 import {SignupComponent} from "./components/signup/signup.component";
 import {LoginComponent} from "./components/login/login.component";
+import { GetUserComponent } from './get-user/get-user.component';
 
 
 const routes: Routes = [{
@@ -23,6 +24,11 @@ const routes: Routes = [{
 }, {
   path: "signup",
   component: SignupComponent
+},
+{
+  path: "getusers",
+  component: GetUserComponent
+  
 }];
 
 @NgModule({

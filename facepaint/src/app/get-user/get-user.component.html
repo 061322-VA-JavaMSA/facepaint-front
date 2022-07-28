@@ -2,7 +2,7 @@
 <button (click)="getUsers()"> Get Users</button>
 
 <div *ngFor = "let user of users | async">
-    {{users | json}}
+    {{user | json}}
 </div>
 
 <!-- <div *ngFor="let user of users | async">
