@@ -8,22 +8,30 @@ import { ArtRetrievalService } from 'src/app/services/art-retrieval.service';
 })
 export class SearchComponent implements OnInit {
 
-  searchTitles: string[];
-  searchArtists: string[];
-  searchImages: string[];
+  searchTitles!: string[];
+  searchArtists!: string[];
+  searchImages = new Array(5);
   searchParam: string;
+  isFilled = false;
 
   constructor(private artServ: ArtRetrievalService) { }
 
   ngOnInit(): void {
   }
 
+  checkIsFilled(){
+    if(this.isFilled === true){
+      return true;
+    }
+    return false;
+  }
+
   search(){
     
     this.artServ.getSearchsIds(this.searchParam);
-    //this.artServ.getSearchArtistTitle();
     this.searchTitles = this.artServ.searchArrTitles;
     this.searchArtists = this.artServ.searchArrArtists;
-    this.searchImages = this.artServ.searchArrImages;
+    this.searchImages = this.artServ.imageURL;
+    this.isFilled = true;
   }
 }

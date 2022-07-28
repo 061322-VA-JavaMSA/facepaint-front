@@ -14,11 +14,11 @@ export class ArtRetrievalService {
   artist: string;
   imageID : string;
   searchResults : any;
-  imageURL: any;
-  searchArtIds : string[];
-  searchArrTitles:string[];
-  searchArrImages: any[];
-  searchArrArtists:string[];
+  imageURL = new Array(5);
+  searchArtIds: string[];
+  searchArrTitles = new Array(5);
+  searchArrImages = new Array(5);
+  searchArrArtists = new Array(5);
 
   
 
@@ -80,44 +80,27 @@ getSearchResults(searchKeyword: string){
 
 //converts the retrieved observable to a json object for manipulation
 getSearchsIds(searchKeyword: string){
-  this.getSearchResults(searchKeyword).subscribe((val) => {
+  this.getSearchResults(searchKeyword).subscribe(val => {
     this.searchResults = val;
     this.searchArtIds = [this.searchResults.data[0].id,this.searchResults.data[1].id,this.searchResults.data[2].id,this.searchResults.data[3].id,this.searchResults.data[4].id];
-    for(let i = 0; i< this.searchArtIds.length; i++){
-      this.showSearchArtInfo(this.searchArtIds[i]).subscribe((response)=>{
-        this.imageData = response;
-        this.searchArrArtists.push(this.imageData.data.artist_display);
-        this.searchArrTitles.push(this.imageData.data.title);
-        this.searchArrImages.push(this.imageData.data.image_id);
-      });
-      this.getImageFromService(this.imageID);
-      this.searchArrImages.push(this.sanitize(this.imageToShow));
-    }
+    this.populateArrays(this.searchArtIds);
   });
-  //this.getSearchResults(searchKeyword).subscribe(val => {
-  //this.searchResults = val;
-  //this.searchArtIds = [this.searchResults.data[0].id,this.searchResults.data[1].id,this.searchResults.data[2].id,this.searchResults.data[3].id,this.searchResults.data[4].id];
-  //console.log(this.searchArtIds);
-  // this.searchArrTitles = [this.searchResults.data[0].artist_display,this.searchResults.data[1].artist_display,this.searchResults.data[2].artist_display,this.searchResults.data[3].artist_display,this.searchResults.data[4].artist_display];
-  //this.searchArrTitles = [];
-
-  //console.log(this.imageData.data.id);
-//});
 
 }
 
-showSearchArtInfo(artId : string){
- return this.getArtworkInfo(artId)
-}
-
-getSearchArtistTitle(){
-  for(let i = 0; i< this.searchArtIds.length; i++){
-    this.showArtInfo(this.searchArtIds[i]);
-    this.searchArrImages.push(this.sanitize(this.imageToShow));
+//populates all necessary array variables for retrieval
+populateArrays(searchParam:any){
+  for(let i = 0; i< searchParam.length; i++){
+    this.getArtworkInfo(searchParam[i]).subscribe(val=>{
+      this.imageData = val;
+      this.searchArrArtists[i] = this.imageData.data.artist_display;
+      this.searchArrTitles[i] = this.imageData.data.title;
+      //this.searchArrImages[i] = this.imageData.data.image_id;
+      this.getImageFromService(this.imageData.data.image_id);
+      this.imageURL[i] = this.sanitize(this.imageToShow);
+      //console.log(this.imageURL);
+    });
   }
-  console.log("Art Array" + this.searchArrImages);
-  console.log("Art Titles" + this.searchArrTitles);
-  console.log("Art Artists" + this.searchArrArtists);
 }
 
 }
