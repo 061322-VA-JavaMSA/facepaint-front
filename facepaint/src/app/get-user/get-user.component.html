@@ -1,11 +1,58 @@
 <p>get-user works!</p>
 <button (click)="getUsers()"> Get Users</button>
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+<!-- <table>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+</table> -->
+<table>
+    <tr>
+        <th>ID</th>
+        <th>username</th>
+        <th>role</th>
+    </tr>
+    <tr>
+        <td>
+            <div *ngFor = "let user of users | async">
+                {{user.id | json}}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div *ngFor = "let user of users | async">
+                {{user.username| json}}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div *ngFor = "let user of users | async">
+                {{user.role| json}}
+            </div>
+        </td>
+    </tr>
 
+</table>
 <div *ngFor = "let user of users | async">
     {{user | json}}
 </div>
-
-<!-- <div *ngFor="let user of users | async">
-    {{user | json}}
-
-</div> -->
