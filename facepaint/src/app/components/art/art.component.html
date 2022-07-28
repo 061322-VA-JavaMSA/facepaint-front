@@ -1,3 +1,15 @@
 <p>art works!</p>
 
-<img [src]="this.sanitize(imageToShow)"/>
+<div>
+    <input type = "text" name = "artIdInput" [(ngModel)]="artIdInput">
+    <input type = "text" name = "artImageIdInput" [(ngModel)]="artImageIdInput">
+    <button (click) = "showArtInformation()">Get art information</button>
+    <button (click) = "showArtImage()">Get art information</button>
+
+    <p>Art Information:</p>
+    {{imageTitle | json}}
+    {{imageArtist}}
+
+    <p>Test Image</p>
+    <img [src] = "artImage">
+</div>
