@@ -14,10 +14,11 @@ export class ProfileComponent implements OnInit {
   user: any
   id: number;
 
+
   constructor(private userServ: UserService) { }
 
   getUser: User; ngOnInit(){
-    this.userServ.getUserById(1)
+    this.userServ.getUserById(27)
     .subscribe(data => this.getUser = data);
   }
 
