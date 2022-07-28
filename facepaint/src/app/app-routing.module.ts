@@ -4,6 +4,7 @@ import {HomeComponent} from "./components/home/home.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {ArtComponent} from "./components/art/art.component";
 import {SignupComponent} from "./components/signup/signup.component";
+import { SearchComponent } from './components/search/search.component';
 
 
 const routes: Routes = [{
@@ -19,6 +20,9 @@ const routes: Routes = [{
 }, {
   path: 'users',
   component: SignupComponent
+},{
+  path: 'search',
+  component: SearchComponent
 }];
 
 @NgModule({

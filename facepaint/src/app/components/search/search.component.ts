@@ -8,8 +8,10 @@ import { ArtRetrievalService } from 'src/app/services/art-retrieval.service';
 })
 export class SearchComponent implements OnInit {
 
-  //variables for use later
-  searchResults: any;
+  searchTitles: string[];
+  searchArtists: string[];
+  searchImages: string[];
+  searchParam: string;
 
   constructor(private artServ: ArtRetrievalService) { }
 
@@ -17,6 +19,11 @@ export class SearchComponent implements OnInit {
   }
 
   search(){
-    //this.searchResults = this.artServ.showSearchResults();
+    
+    this.artServ.getSearchsIds(this.searchParam);
+    //this.artServ.getSearchArtistTitle();
+    this.searchTitles = this.artServ.searchArrTitles;
+    this.searchArtists = this.artServ.searchArrArtists;
+    this.searchImages = this.artServ.searchArrImages;
   }
 }
