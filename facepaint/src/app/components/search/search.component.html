@@ -1,17 +1,65 @@
-<p>search works!</p>
+<body>
+    <div id="bottomBorder" class="d-flex justify-content-center">
+        <h4 class="display-5">Search Results</h4>
+    </div>
 
-<input type = "text" [(ngModel)]="searchParam">
-<button (click) = "search()">Show Search Results</button>
-
-<div ng-if="checkIsFilled() = true">
-    <p>{{searchArtists[0]}}</p>
-    <p>{{searchArtists[1]}}</p>
-    <p>{{searchArtists[2]}}</p>
-    <p>{{searchArtists[3]}}</p>
-    <p>{{searchArtists[4]}}</p>
-
-    <img [src] = "searchImages[0]">
+<div class = "container-fluid" ng-if="checkIsFilled() = true">
+    <div class = "row">
+        <div class="col-md-2 nopadding">
+            <img class = "img-fluid" [src] = "searchImages[0]">
+        </div>
+        <div class="col-md-4 nopadding">
+            {{searchTitles[0]}}
+            <br>
+            {{searchArtists[0]}}
+        </div>
+    </div>
+    <hr style = "height:2px; color:white">
+    <div class = "row">
+        <div class="col-md-2 nopadding">
+            <img class = "img-fluid" [src] = "searchImages[1]">
+        </div>
+        <div class="col-md-4 nopadding">
+            {{searchTitles[1]}}
+            <br>
+            {{searchArtists[1]}}
+        </div>
+    </div>
+    <hr style = "height:2px; color:white">
+    <div class = "row">
+        <div class="col-md-2 nopadding">
+            <img class = "img-fluid" [src] = "searchImages[2]">
+        </div>
+        <div class="col-md-4 nopadding">
+            {{searchTitles[2]}}
+            <br>
+            {{searchArtists[2]}}
+        </div>
+    </div>
+    <hr style = "height:2px; color:white">
+    <div class = "row">
+        <div class="col-md-2 nopadding">
+            <img class = "img-fluid" [src] = "searchImages[3]">
+        </div>
+        <div class="col-md-4 nopadding">
+            {{searchTitles[3]}}
+            <br>
+            {{searchArtists[3]}}
+        </div>
+    </div>
+    <hr style = "height:2px; color:white">
+    <div class = "row">
+        <div class="col-md-2 nopadding">
+            <img class = "img-fluid" [src] = "searchImages[4]">
+        </div>
+        <div class="col-md-4 nopadding">
+            {{searchTitles[4]}}
+            <br>
+            {{searchArtists[4]}}
+        </div>
+    </div>
 </div>
+</body>
 
 
 

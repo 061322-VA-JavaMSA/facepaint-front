@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 export class NavComponent implements OnInit {
 
   @Input() loggedInUser!: User; //will be to hold logged in user
+  searchParam!: string;
 
   constructor(private authServ: AuthService, private router: Router) { }
 
@@ -22,5 +23,10 @@ export class NavComponent implements OnInit {
     console.log('logging out');
     this.authServ.logout();
     this.router.navigate(['login']) //sends user to login page
+  }
+
+  search(){
+    //this.searchComp.search(this.searchParam);
+    this.router.navigate(['search', {p1:this.searchParam}]);
   }
 }

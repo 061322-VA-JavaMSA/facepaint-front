@@ -5,8 +5,8 @@
   <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-center">
     <li class="nav-item"  *ngIf="loggedInUser">
       <form id="form">
-        <input type="search" id="query" name="q" placeholder="Search...">
-        <button>Search</button>
+        <input type="search" id="query" name="q" placeholder="Search..." [(ngModel)]="searchParam">
+        <button (click) = "search()">Search</button>
       </form>
     </li>
     <li class="nav-item"  *ngIf="loggedInUser && loggedInUser.role === 'ADMIN'">
