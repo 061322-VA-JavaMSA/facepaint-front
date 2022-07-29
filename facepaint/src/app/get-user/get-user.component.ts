@@ -29,8 +29,9 @@ export class GetUserComponent implements OnInit {
 
 
   }
-}
+  
 
+}
 
 
   
