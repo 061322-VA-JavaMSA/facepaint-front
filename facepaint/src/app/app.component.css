@@ -1,0 +1,9 @@
+.backdrop{
+
+    width: 100%;
+    height: 100vh;
+    background: url('https://images6.alphacoders.com/592/thumb-1920-592994.jpg') no-repeat;
+    background-size: cover;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}

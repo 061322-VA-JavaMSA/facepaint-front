@@ -7,6 +7,7 @@ import {SignupComponent} from "./components/signup/signup.component";
 import {LoginComponent} from "./components/login/login.component";
 import { GetUserComponent } from './get-user/get-user.component';
 import { SearchComponent } from './components/search/search.component';
+import { DarkLightModeComponent } from './dark-light-mode/dark-light-mode.component';
 
 
 
@@ -34,7 +35,8 @@ const routes: Routes = [{
 },{
   path: 'search',
   component: SearchComponent
-}];
+},{path: 'darklight',
+  component:DarkLightModeComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

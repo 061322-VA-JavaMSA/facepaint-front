@@ -14,6 +14,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
 import { GetUserComponent } from './get-user/get-user.component';
+import { DarkLightModeComponent } from './dark-light-mode/dark-light-mode.component';
 
 
 
@@ -29,7 +30,8 @@ import { GetUserComponent } from './get-user/get-user.component';
     GetUserComponent,
     SignupComponent,
     LoginComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    DarkLightModeComponent
  
  
   ],
