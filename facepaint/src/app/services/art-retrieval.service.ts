@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ArtRetrievalService {
   imageToShow: any;
+  imageToShowSingle: any;
   sanitizedImage:any;
   imageData: any;
   title: string;
@@ -20,6 +21,7 @@ export class ArtRetrievalService {
   searchArrTitles = new Array(5);
   searchArrImages = new Array(5);
   searchArrArtists = new Array(5);
+  returnArtIDS = new Array(5);
 
   
 
@@ -40,8 +42,8 @@ export class ArtRetrievalService {
   createImageFromBlob(image: Blob) {
    let reader = new FileReader();
    reader.addEventListener("load", () => {
-      this.imageToShow = reader.result;
-      this.sanitizedImage = this.sanitize(this.imageToShow);
+      this.imageToShowSingle = reader.result;
+      this.sanitizedImage = this.sanitize(this.imageToShowSingle);
    }, false);
 
    //checks if image != null
@@ -55,7 +57,8 @@ export class ArtRetrievalService {
     this.getArtworkImage(imageId).subscribe(data => {
       let reader = new FileReader();
       reader.addEventListener("load", () => {
-         this.imageToShow = reader.result;
+         this.imageToShowSingle = reader.result;
+         this.sanitizedImage = this.sanitize(this.imageToShowSingle);
       }, false);
    
       //checks if image != null
@@ -78,7 +81,18 @@ showArtInfo(artId : string){
       this.title = this.imageData.data.title;
       this.artist = this.imageData.data.artist_display;
       this.imageID = this.imageData.data.image_id;
-    //console.log(this.imageData.data.id);
+      this.getArtworkImage(this.imageID).subscribe(data => {
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+           this.imageToShowSingle = reader.result;
+           this.sanitizedImage = this.sanitize(this.imageToShowSingle);
+        }, false);
+     
+        //checks if image != null
+        if (data) {
+           reader.readAsDataURL(data);
+        }
+    });
   });
 }
 
@@ -93,7 +107,6 @@ getSearchsIds(searchKeyword: string){
   this.getSearchResults(searchKeyword).subscribe(val => {
     this.searchResults = val;
     this.searchArtIds = [this.searchResults.data[0].id,this.searchResults.data[1].id,this.searchResults.data[2].id,this.searchResults.data[3].id,this.searchResults.data[4].id];
-    //console.log("image ids"+this.searchArtIds);
     this.populateArrays(this.searchArtIds);
   });
 
@@ -107,10 +120,9 @@ populateArrays(searchParam:any){
       this.searchArrImages[i] = this.imageData.data.image_id;
       this.searchArrArtists[i] = this.imageData.data.artist_display;
       this.searchArrTitles[i] = this.imageData.data.title;
-      
-      //console.log("current array"+this.searchArrImages);
+      this.returnArtIDS[i] = searchParam[i];
       this.getSearchImageFromService(this.imageData.data.image_id, i);
-      //console.log(this.imageURL);
+    
     });
   }
 }
