@@ -1,34 +1,23 @@
 
 <app-delete-user></app-delete-user>
 
-<button (click)="getUsers()"> Get Users</button>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>username</th>
-        <th>role</th>
-    </tr>
-    <tr>
-        <td>
-            <div *ngFor = "let user of users | async">
-                {{user.id | json}}
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div *ngFor = "let user of users | async">
-                {{user.username | json}}
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div *ngFor = "let user of users | async">
-                {{user.role | json}}
-            </div>
-        </td>
-    </tr>
 
-</table>
 
+<div>
+    <table id="userTable" class="table table-hover table-responsive" >
+      <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | async">
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.role}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
