@@ -1,7 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import {DomSanitizer} from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { ArtRetrievalService } from 'src/app/services/art-retrieval.service';
 
 @Component({
   selector: 'app-art',
@@ -10,43 +9,88 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 
 export class ArtComponent implements OnInit {
+
+  //images title to be displayed
+  imageTitle: string;
+
+  //images' artist to be displayed
+  imageArtist: string;
+  
+  //art id to search for art information
+  artIdInput: string;
+
+  //image id to retrieve the actual image
+  artImageIdInput: string;
+
+  //actual image to be displayer
+  artImage: any;
+
+  artData: any;
+
+  imageToShowSingle: any;
+  sanitizedImage: any;
+
+  notNull = false;
+  
+
+   constructor(private artServ: ArtRetrievalService, private activated: ActivatedRoute){}
+
    ngOnInit(): void {
-    this.getImageFromService();
+    this.activated.paramMap.subscribe( paramMap => {
+      this.artIdInput = paramMap.get('p1');
+      this.showArtInformation();
+  })
   }
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer){}
-
-  readonly ROOT_URL = 'http://localhost:8080';
-
-  sanitize( url:string ) {
-    return this.sanitizer.bypassSecurityTrustUrl(url);
+  //sets the image id
+  setArtImageIdInput(artInput:string){
+    this.artImageIdInput = artInput;
   }
 
-  getArtwork(): Observable<Blob>{
-   let queryParam = new HttpParams().set('imageID','2fa24f36-cc26-41b6-4b49-12bba2a6c1c8');
-   return this.http.get(this.ROOT_URL+'/artwork',{params:queryParam, responseType:'blob'});
+  //sets the art id for art information
+  setArtIdInput(artInput : string){
+    this.artIdInput = artInput;
   }
 
-  imageToShow: any;
 
-createImageFromBlob(image: Blob) {
-   let reader = new FileReader();
-   reader.addEventListener("load", () => {
-      this.imageToShow = reader.result;
-   }, false);
-
-   if (image) {
-      reader.readAsDataURL(image);
-   }
-}
-
-getImageFromService() {
-  
-  this.getArtwork().subscribe(data => {
-    this.createImageFromBlob(data);
+  showArtInformation(){
+    this.artServ.getArtworkInfo(this.artIdInput).subscribe(val => {
+      this.artData = val;
+      this.imageTitle = this.artData.data.title;
+      this.imageArtist = this.artData.data.artist_display;
+      this.artImage = this.artData.data.image_id;
+      this.artServ.getArtworkImage(this.artImage).subscribe(data => {
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+           this.imageToShowSingle = reader.result;
+           this.sanitizedImage = this.artServ.sanitize(this.imageToShowSingle);
+           this.notNull = true;
+        }, false);
+     
+        //checks if image != null
+        if (data) {
+           reader.readAsDataURL(data);
+        }
+    });
   });
-}
-}
-
+  }
   
-//2fa24f36-cc26-41b6-4b49-12bba2a6c1c8
+  showArtImage(){
+   this.artServ.getImageFromService(this.artImageIdInput);
+   this.artImage = this.artServ.sanitizedImage;
+  }
+
+  checknotNull(){
+    if(this.notNull === true){
+      return true;
+    }
+    return false;
+  }
+
+  updateShowcase(){
+    //TODO to be implemented
+    //this.artImage holds the image_id gathered from api
+    console.log("this button was clicked. Image_id:" + this.artImage);
+  }
+
+}
