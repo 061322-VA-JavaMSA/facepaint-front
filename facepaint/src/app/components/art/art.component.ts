@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ArtRetrievalService } from 'src/app/services/art-retrieval.service';
 
 @Component({
@@ -23,12 +24,22 @@ export class ArtComponent implements OnInit {
 
   //actual image to be displayer
   artImage: any;
+
+  artData: any;
+
+  imageToShowSingle: any;
+  sanitizedImage: any;
+
+  notNull = false;
   
 
-   constructor(private artServ: ArtRetrievalService){}
+   constructor(private artServ: ArtRetrievalService, private activated: ActivatedRoute){}
 
    ngOnInit(): void {
-    this.artImage = '';
+    this.activated.paramMap.subscribe( paramMap => {
+      this.artIdInput = paramMap.get('p1');
+      this.showArtInformation();
+  })
   }
 
   //sets the image id
@@ -43,14 +54,43 @@ export class ArtComponent implements OnInit {
 
 
   showArtInformation(){
-    this.artServ.showArtInfo(this.artIdInput);
-    this.imageTitle = this.artServ.title;
-    this.imageArtist = this.artServ.artist;
+    this.artServ.getArtworkInfo(this.artIdInput).subscribe(val => {
+      this.artData = val;
+      this.imageTitle = this.artData.data.title;
+      this.imageArtist = this.artData.data.artist_display;
+      this.artImage = this.artData.data.image_id;
+      this.artServ.getArtworkImage(this.artImage).subscribe(data => {
+        let reader = new FileReader();
+        reader.addEventListener("load", () => {
+           this.imageToShowSingle = reader.result;
+           this.sanitizedImage = this.artServ.sanitize(this.imageToShowSingle);
+           this.notNull = true;
+        }, false);
+     
+        //checks if image != null
+        if (data) {
+           reader.readAsDataURL(data);
+        }
+    });
+  });
   }
   
   showArtImage(){
    this.artServ.getImageFromService(this.artImageIdInput);
    this.artImage = this.artServ.sanitizedImage;
+  }
+
+  checknotNull(){
+    if(this.notNull === true){
+      return true;
+    }
+    return false;
+  }
+
+  updateShowcase(){
+    //TODO to be implemented
+    //this.artImage holds the image_id gathered from api
+    console.log("this button was clicked. Image_id:" + this.artImage);
   }
 
 }
