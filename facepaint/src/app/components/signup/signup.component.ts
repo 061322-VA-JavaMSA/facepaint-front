@@ -14,26 +14,31 @@ export class SignupComponent implements OnInit {
   newUser!: User;
   passwordVerification!: String;
   errorMessage!: String;
+  successMessage!: string
 
   constructor(private userServ: UserService, private router:Router) { }
 
   ngOnInit(): void {
-    this.newUser = new User(0, '', '', Role.BASIC_USER,'');
+    this.newUser = new User(0, null, null, Role.BASIC_USER,'');
   }
 
   register(){
     this.errorMessage = '';
+    this.successMessage = '';
 
-    
+    if(this.newUser.username != null && this.newUser.password != null){
       this.userServ.createUser(this.newUser).subscribe(
         () => {
-          this.router.navigate(['']);
+          this.successMessage ='User created! Redirecting...'
+          setTimeout(() => {
+          this.router.navigate(['login'])}, 3000)
         },
         () => {
           this.errorMessage = 'Username already in use, please try again'
         }
-      );
-    
+      );}else{
+      this.errorMessage = 'Fields cannot be null'
+      }
     }
   }
 

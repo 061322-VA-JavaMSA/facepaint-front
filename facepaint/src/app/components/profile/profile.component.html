@@ -1,13 +1,13 @@
 
 
-<h2>Profile</h2>
+<h1>Your Profile</h1>
 
-<input id="user-id" [(ngModel)]="id" placeholder="user-id">
-<button type="button" class="clear"
-          (click)="getUserById(id)">Find</button>
-<div>{{user | json}}</div>
+<div class="d-flex justify-content-center">
+    <h3>Welcome {{getUser?.username}}!</h3>
+</div>
 
-<td>Welcome! {{getUser?.username}}</td>
 <br>
-<td>{{getUser?.imageId}}</td>
-<img class="image-thing" src="https://www.artic.edu/iiif/2/{{getUser?.imageId}}/full/843,/0/default.jpg"/>
+<div class="d-flex justify-content-center">
+<img class="profile-image" src="https://www.artic.edu/iiif/2/{{getUser?.imageId}}/full/843,/0/default.jpg"/>
+
+</div>
