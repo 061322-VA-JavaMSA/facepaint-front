@@ -1,0 +1,14 @@
+<p>delete-user works!</p>
+
+<div>
+  <label>User Id</label>
+</div>
+<div class="d-flex justify-content-center">
+  <input class="inputstyle" type="number" name="userId" id="userId" [(ngModel)]="remUser.id">
+</div>
+<br>
+<br>
+<br>
+<div class="d-flex justify-content-center">
+  <input class="btn btn-outline-secondary" value="Delete" id="submitButton" type="submit" (click)="delete(remUser)">
+</div>

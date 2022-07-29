@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import {User} from "./models/user";
+import {AuthService} from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'facepaint';
+  title = 'Facepaint';
+
+  loggedInUser!: User | null;
+
+  constructor(private authServ: AuthService) {
+  }
+
+  getLoggedInUser(){
+    this.loggedInUser = this.authServ.loggedInUser;
+    console.log(this.authServ.loggedInUser);
+  }
 }

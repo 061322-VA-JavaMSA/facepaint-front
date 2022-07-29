@@ -1,1 +1,15 @@
-<p>profile works!</p>
+<h1>Your Profile</h1>
+
+<div class="d-flex justify-content-center">
+    <h3>Welcome {{getUser?.username}}!</h3>
+</div>
+
+<br>
+<div class="d-flex justify-content-center">
+<img class="profile-image" src="https://www.artic.edu/iiif/2/{{getUser?.imageId}}/full/843,/0/default.jpg"/>
+
+</div>
+<td>
+  <a th:href="@{/user/edit/{imageId}(id=${user-id})}"
+  class = "btn btn-primary">Update Showcase</a>
+</td>

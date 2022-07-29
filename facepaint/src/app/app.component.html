@@ -1,2 +1,7 @@
-<h1>Hello</h1>
-<router-outlet></router-outlet>
+<!-- <app-signup></app-signup>
+commented out for right now to handle conflict,
+but will be added to the router-outlet later -->
+<div class="backdrop">
+  <app-nav [loggedInUser]="loggedInUser"></app-nav>
+  <router-outlet (activate)="getLoggedInUser()"></router-outlet>
+</div>

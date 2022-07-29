@@ -1,0 +1,32 @@
+<app-delete-user></app-delete-user>
+
+<button (click)="getUsers()"> Get Users</button>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>username</th>
+        <th>role</th>
+    </tr>
+    <tr>
+        <td>
+            <div *ngFor = "let user of users | async">
+                {{user.id | json}}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div *ngFor = "let user of users | async">
+                {{user.username | json}}
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div *ngFor = "let user of users | async">
+                {{user.role | json}}
+            </div>
+        </td>
+    </tr>
+
+</table>
