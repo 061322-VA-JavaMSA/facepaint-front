@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArtRetrievalService } from 'src/app/services/art-retrieval.service';
 
 @Component({
@@ -12,10 +12,11 @@ export class SearchComponent implements OnInit {
   searchTitles!: string[];
   searchArtists!: string[];
   searchImages: any[];
+  searchIDS : string[];
   searchParam: string;
   isFilled = false;
 
-  constructor(private artServ: ArtRetrievalService, private activated:ActivatedRoute) { }
+  constructor(private artServ: ArtRetrievalService, private activated:ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.activated.paramMap.subscribe( paramMap => {
@@ -37,6 +38,12 @@ export class SearchComponent implements OnInit {
     this.searchTitles = this.artServ.searchArrTitles;
     this.searchArtists = this.artServ.searchArrArtists;
     this.searchImages = this.artServ.imageURL;
+    this.searchIDS = this.artServ.returnArtIDS;
     this.isFilled = true;
+  }
+
+
+  goToDetails(artID: string){
+    this.router.navigate(['art', {p1:artID}]);
   }
 }
