@@ -16,32 +16,39 @@ import { User } from '../models/user';
 export class GetUserComponent implements OnInit {
 
   users!: any;
-
-
-  ngOnInit(): void {
-
-
-  }
-
-
-
   constructor(private us: UserService) { 
 
   }
+
+
+   getUsers: Observable<User[]>; ngOnInit(){
+    this.users = this.us.getUsers();
+    console.log(this.users);
+    return this.users;
+    
+
+
+  }
+  
+
+}
+
+
+  
 
 
   // getUsers(){
   //   console.log(user);
   //   return user;
   // }
-  getUsers(): Observable<User[]>{
-    this.users = this.us.getUsers();
-    console.log(this.users);
-    return this.users;
-  }
+  // getUsers(): Observable<User[]>{
+  //   this.users = this.us.getUsers();
+  //   console.log(this.users);
+  //   return this.users;
+  // }
 
 
-}
+
   
 
 
