@@ -3,7 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Role } from 'src/app/models/role.enum';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
-import { HttpParams } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-delete-user',
@@ -37,5 +37,6 @@ export class DeleteUserComponent implements OnInit {
     );
     
   }
+ 
 
 }
