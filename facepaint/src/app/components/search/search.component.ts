@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ArtRetrievalService } from 'src/app/services/art-retrieval.service';
 
 @Component({
@@ -10,13 +11,17 @@ export class SearchComponent implements OnInit {
 
   searchTitles!: string[];
   searchArtists!: string[];
-  searchImages = new Array(5);
+  searchImages: any[];
   searchParam: string;
   isFilled = false;
 
-  constructor(private artServ: ArtRetrievalService) { }
+  constructor(private artServ: ArtRetrievalService, private activated:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activated.paramMap.subscribe( paramMap => {
+      this.searchParam = paramMap.get('p1');
+      this.search();
+  })
   }
 
   checkIsFilled(){

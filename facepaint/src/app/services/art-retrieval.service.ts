@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ArtRetrievalService {
   imageToShow: any;
+  sanitizedImage:any;
   imageData: any;
   title: string;
   artist: string;
@@ -40,6 +41,7 @@ export class ArtRetrievalService {
    let reader = new FileReader();
    reader.addEventListener("load", () => {
       this.imageToShow = reader.result;
+      this.sanitizedImage = this.sanitize(this.imageToShow);
    }, false);
 
    //checks if image != null
@@ -51,7 +53,15 @@ export class ArtRetrievalService {
   //sends the retrieved byte[] to be converted
   getImageFromService(imageId: string) {
     this.getArtworkImage(imageId).subscribe(data => {
-    this.createImageFromBlob(data);
+      let reader = new FileReader();
+      reader.addEventListener("load", () => {
+         this.imageToShow = reader.result;
+      }, false);
+   
+      //checks if image != null
+      if (data) {
+         reader.readAsDataURL(data);
+      }
   });
 }
 
@@ -83,6 +93,7 @@ getSearchsIds(searchKeyword: string){
   this.getSearchResults(searchKeyword).subscribe(val => {
     this.searchResults = val;
     this.searchArtIds = [this.searchResults.data[0].id,this.searchResults.data[1].id,this.searchResults.data[2].id,this.searchResults.data[3].id,this.searchResults.data[4].id];
+    //console.log("image ids"+this.searchArtIds);
     this.populateArrays(this.searchArtIds);
   });
 
@@ -93,14 +104,35 @@ populateArrays(searchParam:any){
   for(let i = 0; i< searchParam.length; i++){
     this.getArtworkInfo(searchParam[i]).subscribe(val=>{
       this.imageData = val;
+      this.searchArrImages[i] = this.imageData.data.image_id;
       this.searchArrArtists[i] = this.imageData.data.artist_display;
       this.searchArrTitles[i] = this.imageData.data.title;
-      //this.searchArrImages[i] = this.imageData.data.image_id;
-      this.getImageFromService(this.imageData.data.image_id);
-      this.imageURL[i] = this.sanitize(this.imageToShow);
+      
+      //console.log("current array"+this.searchArrImages);
+      this.getSearchImageFromService(this.imageData.data.image_id, i);
       //console.log(this.imageURL);
     });
   }
+}
+
+
+//sends the retrieved byte[] to be converted
+getSearchImageFromService(imageId: string, currPos: number) {
+  this.getArtworkImage(imageId).subscribe(data => {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+       this.imageToShow = reader.result;
+       this.imageURL[currPos] = this.sanitize(this.imageToShow);
+    }, false);
+ 
+    //checks if image != null
+    if (data) {
+       reader.readAsDataURL(data);
+    }
+  //this.imageURL[currPos] = this.sanitize(this.imageToShow);
+  //console.log("current image url" + this.imageURL[currPos]);
+});
+return;
 }
 
 }
