@@ -50,8 +50,7 @@ export class ArtComponent implements OnInit {
   
   showArtImage(){
    this.artServ.getImageFromService(this.artImageIdInput);
-   this.artImage = this.artServ.sanitize(this.artServ.imageToShow);
-
+   this.artImage = this.artServ.sanitizedImage;
   }
 
 }
