@@ -1,12 +1,7 @@
-<p>get-user works!</p>
+
+<app-delete-user></app-delete-user>
+
 <button (click)="getUsers()"> Get Users</button>
-<!-- <table>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-</table> -->
 <table>
     <tr>
         <th>ID</th>
@@ -23,19 +18,17 @@
     <tr>
         <td>
             <div *ngFor = "let user of users | async">
-                {{user.username| json}}
+                {{user.username | json}}
             </div>
         </td>
     </tr>
     <tr>
         <td>
             <div *ngFor = "let user of users | async">
-                {{user.role| json}}
+                {{user.role | json}}
             </div>
         </td>
     </tr>
 
 </table>
-<div *ngFor = "let user of users | async">
-    {{user | json}}
-</div>
+

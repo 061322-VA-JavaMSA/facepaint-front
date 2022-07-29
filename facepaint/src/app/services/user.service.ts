@@ -29,8 +29,8 @@ export class UserService {
       )
     );
   }
-  getUserById(id: number): Observable<any> {
-    return this.http.get<User[]>(`${environment.apiUrl}/users/${id}`);
+  getUserById(activeUser: User): Observable<any> {
+    return this.http.get<User[]>(`${environment.apiUrl}/users/${activeUser.id}`);
   }
 
   createUser(newUser: User): Observable<User> {
