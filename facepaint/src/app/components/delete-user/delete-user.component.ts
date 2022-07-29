@@ -29,6 +29,7 @@ export class DeleteUserComponent implements OnInit {
     this.userServ.deleteUser(remUser).subscribe(
       () => {
         this.router.navigate(['getusers']);
+        window.location.reload();
       },
       () => {
         this.errorMessage = 'User does not exist'
