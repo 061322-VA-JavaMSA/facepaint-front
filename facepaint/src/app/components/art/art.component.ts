@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArtRetrievalService } from 'src/app/services/art-retrieval.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-art',
@@ -29,11 +32,12 @@ export class ArtComponent implements OnInit {
 
   imageToShowSingle: any;
   sanitizedImage: any;
+  u: User;
 
   notNull = false;
   
 
-   constructor(private artServ: ArtRetrievalService, private activated: ActivatedRoute){}
+   constructor(private artServ: ArtRetrievalService, private activated: ActivatedRoute, private authserv: AuthService, private userserv: UserService){}
 
    ngOnInit(): void {
     this.activated.paramMap.subscribe( paramMap => {
@@ -87,10 +91,18 @@ export class ArtComponent implements OnInit {
     return false;
   }
 
-  updateShowcase(){
-    //TODO to be implemented
+     //TODO to be implemented
     //this.artImage holds the image_id gathered from api
+  updateShowcase(){
+    this.authserv.loggedInUser.imageID = this.artImage
+    console.log(this.authserv.loggedInUser.imageID)
+    this.authserv.loggedInUser.password = "pass";
+    this.userserv.update(this.authserv.loggedInUser);
+    
+    console.log(this.authserv.loggedInUser.imageID)
+ 
     console.log("this button was clicked. Image_id:" + this.artImage);
+    
   }
 
 }
