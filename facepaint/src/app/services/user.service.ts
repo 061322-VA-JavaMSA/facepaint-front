@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 
 import { HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -58,5 +59,37 @@ export class UserService {
     return this.http.delete(`${environment.apiUrl}/users`, options)
    
   }
-  
+  updateUserShowcase(user: User):Observable<User>{
+   
+      return this.http.put<User>(`${environment.apiUrl}/users`,user)
+
+  }
+  update(user:User) {
+
+    const headers = new HttpHeaders()
+        .set("Content-Type", "application/json");
+    
+    this.http.put(`${environment.apiUrl}/users`,
+        {
+            "id": user.id,
+            "username": user.username,
+            "password": user.password,
+            "role": user.role,
+            "imageID": user.imageID
+        },
+        {headers})
+        .subscribe(
+            val => {
+                console.log("PUT call successful value returned in body", 
+                            val);
+            },
+            response => {
+                console.log("PUT call in error", response);
+            },
+            () => {
+                console.log("The PUT observable is now completed.");
+            }
+        );
+    }
+ 
 }

@@ -25,4 +25,9 @@ export class ProfileComponent implements OnInit {
     .subscribe(data => this.getUser = data);
   }
  
+  updateMyArt(){
+    this.userServ.getUserById(this.authServ.loggedInUser)
+    .subscribe(data => this.getUser = data);
+    console.log("button press")
+  }
 }
