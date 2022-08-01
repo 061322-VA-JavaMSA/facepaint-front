@@ -1,2 +1,5 @@
-<h1>Hello</h1>
-<router-outlet></router-outlet>
+<div class="backdrop">
+<app-nav [loggedInUser]="loggedInUser"></app-nav>
+<router-outlet (activate)="getLoggedInUser()"></router-outlet>
+</div>
+

@@ -1,1 +1,31 @@
-<p>nav works!</p>
+<body>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink=""><img src="https://image.shutterstock.com/image-vector/colorful-vector-watercolor-brush-strokes-600w-192396266.jpg"
+                                                 style="height: 2.5em; padding: .5em;" alt="Facepaint logo"></a>
+  <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav-center">
+    <li class="nav-item"  *ngIf="loggedInUser">
+      <form id="form">
+        <input type="search" id="query" name="q" placeholder="Search..." [(ngModel)]="searchParam">
+        <button (click) = "search()">Search</button>
+      </form>
+    </li>
+    <li class="nav-item"  *ngIf="loggedInUser && loggedInUser.role === 'ADMIN'">
+      <a class="nav-link" routerLink="getusers">Users</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav navbar-right" id="nav-right">
+    <li class="nav-item"  *ngIf="loggedInUser">
+      <a class="nav-link" routerLink="profile">Profile</a>
+    </li>
+    <li class="nav-item"  *ngIf="loggedInUser">
+      <a class="nav-link clickable" (click)="logout()">Logout</a>
+    </li>
+    <li class="nav-item"  *ngIf="!loggedInUser">
+      <a class="nav-link" routerLink="login">Login</a>
+    </li>
+    <li class="nav-item"  *ngIf="!loggedInUser">
+      <a class="nav-link" routerLink="signup">Signup</a>
+    </li>
+  </ul>
+
+</nav>

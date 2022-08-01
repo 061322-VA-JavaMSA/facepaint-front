@@ -1,1 +1,30 @@
-<p>art works!</p>
+<body>
+    <div id="bottomBorder" class="d-flex justify-content-center">
+        <h4 class="display-5">View Details</h4>
+    </div>
+
+    <div class = "container-fluid text-center" ng-if = "checknotNull() = true">   
+        <div class = "row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                    <img class = "img-fluid" [src] = "sanitizedImage">
+                </div>
+                
+        </div>  
+        <div class = "row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"><br>
+                {{imageTitle}}
+                <br>
+                {{imageArtist}}
+                <br>
+                <button class="btn btn-outline-secondary" value="Change" id="updateShowcase" (click) = "updateShowcase()">Update Showcase Art</button>
+            </div>
+                
+            
+        </div>  
+    </div>
+</body>
+
+
+

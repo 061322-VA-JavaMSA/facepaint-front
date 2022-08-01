@@ -1,0 +1,11 @@
+img{
+
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    border-style: inset;
+    border-color: rgb(183, 132, 3);
+    border-width: 30px;
+
+    
+}

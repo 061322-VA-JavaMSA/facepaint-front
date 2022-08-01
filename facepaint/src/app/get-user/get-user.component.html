@@ -1,0 +1,23 @@
+
+<app-delete-user></app-delete-user>
+
+
+
+<div>
+    <table id="userTable" class="table table-hover table-responsive" >
+      <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | async">
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.role}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
